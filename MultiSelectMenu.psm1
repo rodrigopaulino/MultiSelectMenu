@@ -57,10 +57,12 @@ function New-MultiSelectMenu {
     [Console]::CursorVisible = $True
 
     if ($InputChar.Key -eq 'Enter') {
-        $Result = @{}
+        $Result = @()
 
         for ($i = 0; $i -lt $MenuItems.Count; $i++) {
-            $Result[$MenuItems[$i]] = $SelectedItems[$i]
+            if ($SelectedItems[$i]) {
+                $Result += $MenuItems[$i]
+            }
         }
 
         return $Result
